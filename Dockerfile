@@ -1,13 +1,8 @@
-FROM blendle/aws-cli
+FROM alpine
+MAINTAINER tamtamp
 
-
-RUN apk update && apk upgrade && \
-    apk-install git wget bash
-RUN apk-install less=475-r0 groff=1.22.3-r0 py-pip=1.5.6-r2
-RUN pip install awscli==1.14.9
-RUN apk-install jq
-
-ENTRYPOINT []
+RUN apk update && apk add less groff py-pip && pip install --upgrade pip
+RUN pip install awscli==1.15.1
 
 CMD ["tail","-f","/dev/null"]
     
